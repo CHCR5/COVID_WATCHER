@@ -1,0 +1,41 @@
+{% extends "registroPlantilla.html" %} {% load static %}
+{% block title %} Registro de empleado {% endblock %} 
+{% block content %}
+
+{% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        Datos incorrectos, vuelve a intentarlo.
+    </div>
+{% endif %}
+
+<div class="container px-4 py-5">
+    <form class="form" method="POST">
+    {% csrf_token %}
+        <div class="form-group row">
+            <label class="col-md-4 col-form-label text-md-right">Nombre de la empresa</label>
+            <div class="col-md-6">
+                <input type="text" id="nombregenerado" class="form-control" name="nombregenerado" required>
+            </div>
+        </div>
+        <br>
+
+        <div class="form-group row">
+            <label for="password" class="col-md-4 col-form-label text-md-right">Clave de acceso</label>
+            <div class="col-md-6">
+                <input type="password" id="clave" class="form-control" name="clave" required>
+            </div>
+        </div>
+        
+        <br>
+
+        <div class="col-md-6 offset-md-4">
+            <button type="submit" class="btn btn-warning">
+                Registrar
+            </button>
+            <br>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

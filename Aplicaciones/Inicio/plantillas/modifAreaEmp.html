@@ -1,0 +1,40 @@
+{% extends "adminPlantilla.html" %} {% load static %}
+{% block title %} Registro de empleado {% endblock %} 
+{% block content %}
+{% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        Datos incorrectos, vuelve a intentarlo.
+    </div>
+{% endif %}
+
+
+        <div class="container px-4 py-5">
+            <p>Ingresa el area a la que deseas cambiar al empleado.
+            </p>
+            <br>
+            <form class="form" method="POST">
+                {% csrf_token %}
+
+
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-md-right">Area</label>
+                    <div class="col-md-6">
+                        <select class="form-control" id="tipo" name="tipo">
+                            {% for area in areas %}
+                            <option value={{ area.idarea }}>{{ area.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <div class="col-md-6 offset-md-4">
+                    <button type="submit" class="btn btn-warning">
+                        Cambiar
+                    </button>
+                    <br>
+                </div>
+            </form>
+        </div>
+{% endblock %}

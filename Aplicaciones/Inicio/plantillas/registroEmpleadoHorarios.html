@@ -1,0 +1,78 @@
+{% extends "registroPlantilla.html" %} {% load static %}
+{% block title %} Registro de empleado {% endblock %} 
+{% block content %}
+
+{% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        Datos incorrectos, vuelve a intentarlo.
+    </div>
+{% endif %}
+
+
+        <div class="container px-4 py-5">
+            <form class="form" method="POST">
+                {% csrf_token %}
+
+
+                <label for="dias" class="col-md-4 col-form-label text-md-right">Días laborales en la semana</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="chkbox" id="dia" name="dia" type="checkbox" value="Lunes">
+                        <label class="form-check-label" for="Lu">Lunes</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="chkbox" id="dia" name="dia" type="checkbox" value="Martes">
+                        <label class="form-check-label" for="Ma">Martes</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="chkbox" id="dia" name="dia" type="checkbox" value="Miercoles">
+                        <label class="form-check-label" for="Mi">Miércoles</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="chkbox" id="dia" name="dia" type="checkbox" value="Jueves">
+                        <label class="form-check-label" for="Ju">Jueves</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="chkbox" id="dia" name="dia" type="checkbox" value="Viernes">
+                        <label class="form-check-label" for="Vi">Viernes</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="chkbox" id="dia" name="dia" type="checkbox" value="Sabado">
+                        <label class="form-check-label" for="Sa">Sábado</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="chkbox" id="dia" name="dia" type="checkbox" value="Domingo">
+                        <label class="form-check-label" for="Do">Domingo</label>
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-md-right">Hora de entrada</label>
+                    <div class="col-md-6">
+                        <input type="time" id="horaentrada" class="form-control" name="horaentrada" required>
+                    </div>
+                </div>
+                <br>
+
+                <div class="col-md-6 offset-md-4">
+                    <button type="submit" class="btn btn-warning">
+                        Registrar
+                    </button>
+                </div>
+            </form>
+        </div>
+ 
+{% endblock %}

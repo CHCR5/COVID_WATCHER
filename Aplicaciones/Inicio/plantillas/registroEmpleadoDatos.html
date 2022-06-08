@@ -1,0 +1,51 @@
+{% extends "registroPlantilla.html" %} {% load static %}
+{% block title %} Registro de empleado {% endblock %} 
+{% block content %}
+
+{% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        Datos incorrectos, vuelve a intentarlo.
+    </div>
+{% endif %}
+
+
+<div class="container px-4 py-5">
+    <form class="form" method="POST">
+        {% csrf_token %}
+        <label for="sexo" class="col-md-4 col-form-label text-md-right">Sexo</label>
+        <div class="form-check form-check-inline">
+            <div class="col-md-6">
+                <input class="form-check-input" id="sexo" type="radio" name="sexo" value="Masculino" required>
+                <label class="form-check-label" for="sexoM">Masculino</label>
+            </div>
+        </div>
+        <div class="form-check form-check-inline">
+            <div class="col-md-6">
+                <input class="form-check-input" id="sexo" type="radio" name="sexo" value="Femenino" required>
+                <label class="form-check-label" for="sexoF">Femenino</label>
+            </div>
+        </div>
+
+        
+        <br>
+        <br>
+
+        <div class="form-group row">
+            <label for="fechanacimiento" class="col-md-4 col-form-label text-md-right">Fecha de nacimiento</label>
+            <div class="col-md-6">
+                <input type="date" id="fechanacimiento" name="fechanacimiento" required>
+            </div>
+        </div>
+        <br>
+
+
+        <div class="col-md-6 offset-md-4">
+            <button type="submit" class="btn btn-warning">
+                Registrar
+            </button>
+            <br>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

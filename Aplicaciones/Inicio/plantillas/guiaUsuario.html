@@ -1,0 +1,113 @@
+{% extends "inicioMain.html" %} {% load static %}
+{% block title %} ¿Como usar COVID WATCHER? {% endblock %} 
+{% block content %}
+<br>
+<br>
+<br>
+<h2 class="pb-2 border-bottom" style="text-align: center;">Administrador</h2>
+<br>
+<br>
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-4" id="col1">
+                    <h3>1. Registro</h3>
+                    <p>El usuario "administrador" debe registrarse al sistema para poder hacer uso de el. Pulsa el botón de "Registrarse" y sigue los pasos indicados.</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>2. Iniciar sesión</h3>
+                    <p>Al terminar el registro, pulsa el botón de "Iniciar sesión" y accede al sistema con tus credenciales registradas.</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>3. Crear area</h3>
+                    <p>Para crear un area, pulsa el botón "Crear area" localizado en la barra de navegación e ingresa los datos solicitados.</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>4. Dar de alta empleados</h3>
+                    <p>Pulsa el botón de "Dar de alta empleados" para registrar empleados en el area, ya sea de forma manual o con un archivo CSV en caso de una carga masiva.</p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row justify-content-around">
+                <div class="col-4" id="col1">
+                    <h3>5. Consultar empleados</h3>
+                    <p>Si deseas consultar que empleados están registrados en un area, pulsa el botón "Consultar empleados". Desde aquí también podrás cambiar el area de un empleado y darlo de baja del area.</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>6. Modificar datos del area</h3>
+                    <p>Si deseas cambiar datos registrados del area, pulsa el botón "Modificar datos del area" para cambiar cualquiera de los campos que componen un area.</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>7. Eliminar area</h3>
+                    <p>Si deseas eliminar un area, pulsa el botón "Eliminar area" y esta se eliminara del sistema junto con los empleados registrados en ella.</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>8. Obtener datos de análisis</h3>
+                    <p>Para consultar los datos de análisis del dia, pulsa el botón "Obtener datos", y se desplegaran todos los datos correspondientes al análisis de los datos de la empresa del dia.</p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row justify-content-around">
+                <div class="col-4" id="col1">
+                    <h3>9. Historial de reportes de análisis</h3>
+                    <p>Si deseas consultar un reporte del análisis de los datos de la empresa de días pasados, pulsa el botón de "Historial de reportes de análisis" y elige la forma en la que quieres consultar los datos.</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>10. Reportes de faltas</h3>
+                    <p>Para acceder a los reportes de faltas emitidos por los empleados, pulsa el botón de "Reportes de faltas" y elige la forma en la que quieres consultarlos.</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>11. Reportes de posibles casos de COVID-19</h3>
+                    <p>Para acceder a los reportes de posibles casos de COVID-19 emitidos por los empleados, pulsa el botón de "Reportes de posibles casos de COVID-19" y elige la forma en la que quieres consultarlos.</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>12. Modificar datos de la empresa</h3>
+                    <p>Si requieres cambiar el nombre de la empresa, pulsa el botón de "Modificar datos de la empresa", aquí podrás modificar el nombre, lo cual generara una nueva clave para la empresa.</p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <h2 class="pb-2 border-bottom" style="text-align: center;">Empleado</h2>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-4" id="col1">
+                    <h3>1. Correo electrónico</h3>
+                    <p>El primer paso es revisar tu bandeja de correo electrónico proporcionado por la empresa. Si has sido registrado en un area, recibirás un correo con los datos necesarios para registrarte como usuario "Empleado".</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>2. Registro</h3>
+                    <p>Posteriormente se debe registrar el usuario con los datos recibidos por correo. Pulsa el botón de "Registrarse", elige "Empleado" y sigue las instrucciones. NOTA: El correo electrónico solicitado es el mismo en el cual recibiste el correo con los datos de la empresa.</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>3. Iniciar sesión</h3>
+                    <p>Para acceder al sistema, pulsa el botón de "Iniciar sesión" e ingresa tus credenciales.</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>4. Cambiar datos</h3>
+                    <p>Si deseas cambiar algún dato de tu registro, pulsa el botón de "Cambiar" e ingresa los datos que deseas modificar.</p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row justify-content-around">
+                <div class="col-4" id="col1">
+                    <h3>5. Formulario diario</h3>
+                    <p>Diariamente debes llenar un formulario diario, para acceder a el pulsa el botón de "Formulario diario". Este solo se puede llenar una vez por dia.</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>6. Alertar un posible caso de COVID-19</h3>
+                    <p>Para avisar sobre un posible caso de COVID-19, pulsa el botón de "Alertar un posible caso de COVID-19" e ingresa los datos solicitados.</p>
+                </div>
+                <div class="col-4" id="col1">
+                    <h3>7. Alertar una falta</h3>
+                    <p>Para avisar sobre una falta, pulsa el botón de "Alertar una falta" e ingresa los datos solicitados.</p>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

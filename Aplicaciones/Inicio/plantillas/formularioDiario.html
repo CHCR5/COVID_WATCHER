@@ -1,0 +1,388 @@
+{% extends "registroPlantilla.html" %} {% load static %}
+{% block title %} Registro de empleado {% endblock %} 
+{% block content %}
+{% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        Datos incorrectos, vuelve a intentarlo.
+    </div>
+{% endif %}
+
+
+        <div class="container px-4 py-5">
+            <p>Responde a las siguientes preguntas de forma sincera, tu registro sera anónimo.</p>
+            <br>
+            <form class="form" method="POST">
+                {% csrf_token %}
+                
+                <label class="col-md-4 col-form-label text-md-right">Embarazo</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="estaemba" name="estaemba" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="estaemba" name="estaemba" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-md-right">Meses de embarazo</label>
+                    <div class="col-md-6">
+                        <input type="number" max="10" id="mesesemb" class="form-control" name="mesesemb" required>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Fiebre</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="fiebre" name="fiebre" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="fiebre" name="fiebre" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Tos</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="tos" name="tos" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="tos" name="tos" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Dolor al tragar alimentos</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="odinogia" name="odinogia" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="odinogia" name="odinogia" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Dificultad para respirar</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="disnea" name="disnea" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="disnea" name="disnea" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Irritabilidad</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="irritabi" name="irritabi" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="irritabi" name="irritabi" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Diarrea</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="diarrea" name="diarrea" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="diarrea" name="diarrea" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Dolor torácico</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="dotoraci" name="dotoraci" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="dotoraci" name="dotoraci" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Escalofríos</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="calofrios" name="calofrios" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="calofrios" name="calofrios" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Dolor de cabeza</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="cefalea" name="cefalea" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="cefalea" name="cefalea" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Dolor muscular</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="mialgias" name="mialgias" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="mialgias" name="mialgias" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Dolor articular</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="artral" name="artral" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="artral" name="artral" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Flujo nasal</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="rinorrea" name="rinorrea" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="rinorrea" name="rinorrea" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Frecuencia respiratoria acelerada y de mayor profundidad</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="polipnea" name="polipnea" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="polipnea" name="polipnea" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Vómito</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="vomito" name="vomito" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="vomito" name="vomito" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Dolor abdominal</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="dolabdo" name="dolabdo" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="dolabdo" name="dolabdo" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Conjuntivitis (irritación de ojos)</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="conjun" name="conjun" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="conjun" name="conjun" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Coloración azulada de la piel</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="cianosis" name="cianosis" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="cianosis" name="cianosis" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Síntomas presentados repentinamente</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="inisubis" name="inisubis" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="inisubis" name="inisubis" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Contacto con un caso de infección respiratoria viral en los últimos 7 días</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="conocaso" name="conocaso" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="conocaso" name="conocaso" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Contacto con aves en los últimos 7 días</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="contaves" name="contaves" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="contaves" name="contaves" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Contacto con cerdos en los últimos 7 días</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="concerdo" name="concerdo" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="concerdo" name="concerdo" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+                
+                <br>
+
+                <div class="col-md-6 offset-md-4">
+                    <button type="submit" class="btn btn-warning">
+                        Registrar
+                    </button>
+                    <br>
+                </div>
+            </form>
+        </div>
+{% endblock %}

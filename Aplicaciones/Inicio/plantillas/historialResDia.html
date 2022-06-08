@@ -1,0 +1,412 @@
+{% extends "menuAdminPlantilla.html" %} {% load static %}
+{% block content %}
+
+
+<div class="container px-4 py-5">
+<br>
+<form class="form" method="POST">
+    {% csrf_token %}
+    <div class="form-group row">
+        <label class="col-md-4 col-form-label text-md-right">Fecha:</label>
+        <div class="col-md-6">
+            <input type="date" id="fechafiltro" class="form-control" name="fechafiltro">
+        </div>
+    </div>
+    <br>
+    <div class="col-md-6 offset-md-4">
+        <button type="submit" class="btn btn-warning">
+            Buscar
+        </button>
+        <br>
+    </div>
+    <br>
+    <div class="col-md-8">
+        <a href="{% url 'historialResDiaPDF' %}" style="text-decoration:none">
+            <button type="button" class="btn btn-warning">Generar PDF</button>
+        </a>
+    </div>
+    <br>
+</form>
+
+{% if datossi %}
+<br>
+    <h2 class="pb-2 border-bottom" style="text-align: center;">Datos generales</h2>
+    <br>
+    <br>
+    <div class="row justify-content-around">
+      <div class="col-4" id="col1">
+          <h4>Casos negativos en la empresa: {{ totalempneg }}</h4>
+      </div>
+      <div class="col-4" id="col1">
+          <h4>Casos positivos en la empresa: {{ totalemppos }}</h4>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row justify-content-around">
+        <div id="container" style="width: 50%;" class="col-4">
+            <canvas id="bar-chart"></canvas>
+        </div>
+        <div id="container" style="width: 50%;" class="col-4">
+            <canvas id="line"></canvas>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row justify-content-around">
+      <div id="container" style="width: 50%;" class="col-4">
+          <canvas id="bar2"></canvas>
+      </div>
+      <div id="container" style="width: 50%;" class="col-4">
+        <canvas id="line2"></canvas>
+      </div>
+    </div>
+    <br>
+    <br>
+    <h2 class="pb-2 border-bottom" style="text-align: center;">Areas</h2>
+    <br>
+    <br>
+    <div class="container">
+        {% for area in datosareas %}
+        {% if forloop.first %}
+        <div class="row justify-content-around">
+        {% endif %}
+        {% if forloop.counter|divisibleby:4 %}
+        </div>
+        <br> 
+        <br>
+        <div class="row justify-content-around">
+        {% endif %}
+
+ 
+        <div class="col-4" id="col1">
+            <h1>{{ area.0 }}</h1>
+            <br>
+            <h5>{{ area.3 }}% de los empleados del area son posibles portadores.</h5>
+            <p>Casos positivos: {{ area.1 }}:</p>
+            <p>Casos negativos: {{ area.2 }}</p>
+        </div>
+        <br>
+    {% if forloop.last %}
+    </div> 
+    {% endif %}
+    {% endfor %}
+    </div>
+    <br>
+    <br>
+
+    <div id="container" style="width: 75%; margin:auto;">
+        <canvas id="pie-chart"></canvas>
+      </div>
+      <br>
+      <br>
+    
+      <br>
+      <br>
+    <div class="row justify-content-around">
+      <div class="col-4" id="col1">
+          <h3>Tipo de actividad con mayor numero de posibles contagios:</h3>
+          <br>
+          <h5>{{ datostiposfn.0 }}</h5>
+          <p>Casos positivos: {{ datostiposfn.1 }}</p>
+      </div>
+      <div class="col-4" id="col1">
+        <h3>Tipo de actividad con menor numero de posibles contagios:</h3>
+        <br>
+        <h5>{{ datostiposfn.2 }}</h5>
+        <p>Casos positivos: {{ datostiposfn.3 }}</p>
+      </div>
+      
+    </div>
+    <br>
+    <br>
+    <div id="container" style="width: 75%; margin:auto;">
+      <canvas id="pie3"></canvas>
+    </div>
+    <br>
+    <br>
+
+    <h2 class="pb-2 border-bottom" style="text-align: center;">Empleados que no contestaron el formulario diario</h2>
+    <br>
+    <br>
+    {% for emps in empnoform %}
+      <p><strong>Correo: </strong>{{ emps.0 }}</p>
+      <p><strong>Area: </strong>{{ emps.1 }}</p>
+      <p><strong>Días laborales: </strong>{{ emps.2 }}</p>
+      <p><strong>Hora de entrada: </strong>{{ emps.3 }}</p>
+      <br>
+    {% endfor %}
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+      <script>
+    
+        var config = {
+          type: 'bar',
+          data: {
+            datasets: [{
+              data: {{ poscatter|safe }},
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+              borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+              ],
+              label: 'Posibles casos positivos.'
+            }],
+            labels: {{ nombscatter|safe }}
+          },
+          options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+              },
+            title: {
+                display: true,
+                text: 'Posibles casos positivos de COVID-19 en los últimos 7 días.'
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        reverse: true,
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function (value) { if (Number.isInteger(value)) { return value; } },
+                        stepSize: 1,
+                    }
+                }]
+            }
+          }
+        };
+
+        var config2 = {
+          type: 'pie',
+          data: {
+            datasets: [{
+              data: {{ posarea|safe }},
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+              label: 'Posibles casos positivos.'
+            }],
+            labels: {{ arealistnomb|safe }}
+          },
+          options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+              },
+            title: {
+                display: true,
+                text: 'Posibles casos positivos por area.'
+            }
+          }
+        };
+
+        var config3 = {
+          type: 'line',
+          data: {
+            datasets: [{
+              data: {{ poscatter|safe }},
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+              label: 'Posibles casos positivos.'
+            }],
+            labels: {{ nombscatter|safe }}
+          },
+          options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+              },
+            title: {
+                display: true,
+                text: 'Posibles casos positivos de COVID-19 en los últimos 7 días.'
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        reverse: true,
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function (value) { if (Number.isInteger(value)) { return value; } },
+                        stepSize: 1,
+                    }
+                }]
+            }
+          }
+        };
+
+        var config4 = {
+          type: 'bar',
+          data: {
+            datasets: [{
+              data: {{ posmonth|safe }},
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+              label: 'Posibles casos positivos.'
+            }],
+            labels: {{ nombmonth|safe }}
+          },
+          options: {
+            responsive: true,
+            indexAxis: 'y',
+            legend: {
+                position: 'top',
+              },
+            title: {
+                display: true,
+                text: 'Posibles casos positivos del mes en curso.'
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        reverse: false,
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function (value) { if (Number.isInteger(value)) { return value; } },
+                        stepSize: 1,
+                    }
+                }]
+            }
+          }
+        };
+
+        var config5 = {
+          type: 'line',
+          data: {
+            datasets: [{
+              data: {{ posmonth|safe }},
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+              label: 'Posibles casos positivos.'
+            }],
+            labels: {{ nombmonth|safe }}
+          },
+          options: {
+            responsive: true,
+            indexAxis: 'y',
+            legend: {
+                position: 'top',
+              },
+            title: {
+                display: true,
+                text: 'Posibles casos positivos del mes en curso.'
+            },
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        reverse: false,
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function (value) { if (Number.isInteger(value)) { return value; } },
+                        stepSize: 1,
+                    }
+                }]
+            }
+          }
+        };
+
+        var config6 = {
+          type: 'pie',
+          data: {
+            datasets: [{
+              data: {{ datostipos|safe }},
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+              label: 'Posibles casos positivos.'
+            }],
+            labels: {{ datostiposnom|safe }}
+          },
+          options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+              },
+            title: {
+                display: true,
+                text: 'Posibles casos positivos por tipo de actividad.'
+            }
+          }
+        };
+
+    
+        window.onload = function() {
+          var ctx = document.getElementById('bar-chart').getContext('2d');
+          window.myBar = new Chart(ctx, config);
+          var ctx2 = document.getElementById('pie-chart').getContext('2d');
+          window.myPie = new Chart(ctx2, config2);
+          var ctx3 = document.getElementById('line').getContext('2d');
+          window.myLine = new Chart(ctx3, config3);
+          var ctx4 = document.getElementById('bar2').getContext('2d');
+          window.myLine = new Chart(ctx4, config4);
+          var ctx5 = document.getElementById('line2').getContext('2d');
+          window.myLine = new Chart(ctx5, config5);
+          var ctx6 = document.getElementById('pie3').getContext('2d');
+          window.myLine = new Chart(ctx6, config6);
+        };
+    
+      </script>
+    {% else %}
+    <div class="alert alert-danger">No hay ningún reporte de esta fecha.</div>
+    {% endif %}
+</div>
+
+{% endblock %}

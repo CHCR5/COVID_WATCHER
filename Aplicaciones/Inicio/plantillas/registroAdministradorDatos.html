@@ -1,0 +1,43 @@
+{% extends "registroPlantilla.html" %} {% load static %}
+{% block title %} Registro de administrador {% endblock %} 
+{% block content %}
+
+{% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        Datos incorrectos, vuelve a intentarlo.
+    </div>
+{% endif %}
+
+        
+
+    <div class="container px-4 py-5">
+        <form class="form" method="POST">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    Usuario registrado exitosamente.
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="form-group row">
+                <label for="apmaterno" class="col-md-4 col-form-label text-md-right">Nombre de la empresa:</label>
+                <div class="col-md-6">
+                    <input type="text" id="nombregenerado" class="form-control" name="nombregenerado" required>
+                </div>
+            </div>
+            <br>
+           
+                    
+            <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-warning">
+                    Registrar
+                </button>
+            </div>
+    
+                    
+        </form>
+    </div>
+
+{% endblock %}

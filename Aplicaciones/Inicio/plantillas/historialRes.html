@@ -1,0 +1,34 @@
+{% extends "menuAdminPlantilla.html" %} {% load static %}
+{% block content %}
+
+
+<div class="container px-4 py-5">
+
+        
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h2 class="pb-2 border-bottom" style="text-align: center;">Filtro</h2>
+        <br>
+        <div class="row justify-content-center">
+            <select class="form-control" id="tipo" name="tipo" onchange="location = this.value;">
+                <option>Seleccione una opción</option>
+                <optgroup label="Tiempo">
+                <option value="{% url 'historialResDia' %}">Dia</option>
+                <option value="{% url 'historialResMes' %}">Mes</option>
+            </select>
+            <br>
+        </div>
+        <br>
+
+    <br>
+
+
+    <br>
+<br>
+
+</div>
+
+{% endblock %}

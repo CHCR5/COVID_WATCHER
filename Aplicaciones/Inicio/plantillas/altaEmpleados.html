@@ -1,0 +1,14 @@
+{% extends "adminPlantilla.html" %} {% load static %}
+{% block title %} ¿Como desea dar de alta a los usuarios? {% endblock %} 
+{% block content %}
+
+                <div class="box" id="eleccion">
+                    <a href="{% url 'altaEmpleadosManual' %}?id={{ idadminaux }}" style="text-decoration:none">
+                        <button type="button" class="btn btn-warning" id="adm" value="Administrador" >Manualmente</button>
+                    </a>
+                    <a href="{% url 'altaEmpleadosCSV' %}?id={{ idadminaux }}" style="text-decoration:none">
+                        <button type="button" class="btn btn-warning" id="emp" value="Empleado">Con un archivo CSV</button>
+                    </a>
+                </div>
+
+{% endblock %}

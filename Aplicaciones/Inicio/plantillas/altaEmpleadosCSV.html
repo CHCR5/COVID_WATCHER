@@ -1,0 +1,49 @@
+{% extends "adminPlantilla.html" %} {% load static %}
+{% block title %} Registro de empleado {% endblock %} 
+{% block content %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        setTimeout(function() {
+            $(".content").fadeOut(1500);
+        },3000);
+     
+        setTimeout(function() {
+            $(".content2").fadeIn(1500);
+        },6000);
+    });
+    </script>
+{% if form.errors %}
+    <div class="alert alert-danger content" role="alert">
+        Datos incorrectos, vuelve a intentarlo.
+    </div>
+{% endif %}
+
+
+        <div class="container px-4 py-5">
+            <p>Alternativamente, puede ingresar un documento CSV que contengan en una columna los correos electrónicos de los empleados que desea añadir.
+            </p>
+            <br>
+            <form class="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+            
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-md-right">Documento CSV</label>
+                    <div class="col-md-6">
+                        <input type="file" accept=".csv" id="csv_upload" name="csv_upload">
+                    </div>
+                </div>
+                
+                <br>
+            
+                <div class="col-md-6 offset-md-4">
+                    <button type="submit" class="btn btn-warning">
+                        Registrar
+                    </button>
+                    <br>
+                </div>
+            </form>
+
+        </div>
+{% endblock %}
+
+

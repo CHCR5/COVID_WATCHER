@@ -1,0 +1,40 @@
+{% extends "menuAdminPlantilla.html" %} {% load static %}
+{% block content %}
+
+<div class="container px-4 py-5">
+    {% if datossi %}
+    <h2 class="pb-2 border-bottom" style="text-align: center;">Empleados del area</h2>
+    <br>
+    <div class="container">
+    {% for emp in datosemp %}
+    {% if forloop.first %}
+    <div class="row justify-content-around">
+    {% endif %}
+    {% if forloop.counter|divisibleby:4 %}
+    </div>
+    <br> 
+    <br>
+    <div class="row justify-content-around">
+    {% endif %}
+        <div class="col-4" id="col1">
+            <h6>Correo: {{ emp.0 }}</h6>
+            <br>
+            <p>Sexo: {{ emp.1 }}</p>
+            <p>Area: {{ emp.2 }}</p>
+            <p>Tipo de actividad: {{ emp.3 }}</p>
+            <a href="{% url 'bajaEmpleados'%}?id={{ emp.4 }}" style="text-decoration:none" class="link-info"><p>Dar de baja empleado:</p></a>
+            <a href="{% url 'modifAreaEmp'%}?id={{ emp.4 }}" style="text-decoration:none" class="link-info"><p>Cambiar area de empleado:</p></a>
+        </div>
+        <br>
+    {% if forloop.last %}
+    </div> 
+    {% endif %}
+    {% endfor %}
+    </div>
+
+    {% else %}
+    <div class="alert alert-danger">No hay ningún empleado dado de alta en esta area.</div>
+    {% endif %}
+</div>
+
+{% endblock %}

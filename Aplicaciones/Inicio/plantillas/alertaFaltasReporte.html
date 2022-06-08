@@ -1,0 +1,65 @@
+{% extends "menuAdminPlantilla.html" %} {% load static %}
+{% block content %}
+
+
+
+<div class="container px-4 py-5">
+    {% if adminreport %}
+
+    <h2 class="pb-2 border-bottom" style="text-align: center;">Reportes</h2>
+    <br>
+
+    <div class="form-group row">
+        <label class="col-md-4 col-form-label text-md-right">Filtro:</label>
+        <div class="col-md-6">
+            <select class="form-control" id="tipo" name="tipo" onchange="location = this.value;">
+                <option>Seleccione una opción</option>
+                <optgroup label="Tiempo">
+                <option value="{% url 'alertaFaltasReporteDia'%}">Dia</option>
+                <option value="{% url 'alertaFaltasReporteMes'%}">Mes</option>
+                <optgroup label="Tipo">
+                <option value="{% url 'alertaFaltasReporteTipo'%}">Tipo</option>
+            </select>
+            <br>
+        </div>
+        <div class="col-md-8">
+            <a href="{% url 'alertaFaltasReportePDF' %}" style="text-decoration:none">
+                <button type="button" class="btn btn-warning">Generar PDF</button>
+            </a>
+        </div>
+        <br>
+
+    </div>
+    <br>
+
+
+    <br>
+
+
+    {% for ReporteDeFalta in adminreport %}
+
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="feature col offset-md-1" id="col1">
+            <h2>{{ ReporteDeFalta.tipo }}:</h2>
+            <p>Area del empleado: {{ ReporteDeFalta.nombre }}</p>
+            <p>Correo: {{ ReporteDeFalta.idempleado.correo }}</p>
+            <p>Area: {{ ReporteDeFalta.idarea.nombre }}</p>
+            <p>Fecha de inicio de falta: {{ ReporteDeFalta.fechainiciofalta }}</p>
+            <p>Fecha de fin de falta: {{ ReporteDeFalta.fechafinfalta }}</p>
+            <p>Comentario adicional:</p>
+            <p>{{ ReporteDeFalta.comentario }}</p>
+            <p>Fecha de emisión: {{ ReporteDeFalta.fechahora }}</p>
+        </div>
+    </div>
+
+    {% endfor %}
+
+    <br>
+    <br>
+
+    {% else %}
+    <div class="alert alert-danger">No hay ningún reporte.</div>
+    {% endif %}
+</div>
+
+{% endblock %}

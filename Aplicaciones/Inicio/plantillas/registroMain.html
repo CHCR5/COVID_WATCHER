@@ -1,0 +1,14 @@
+{% extends "registroPlantilla.html" %} {% load static %}
+{% block title %} ¿Que tipo de usuario deseas crear? {% endblock %} 
+{% block content %}
+
+                <div class="box" id="eleccion">
+                    <a href="{% url 'registroAdministrador' %}" style="text-decoration:none">
+                        <button type="button" class="btn btn-warning" id="adm" value="Administrador" >Administrador</button>
+                    </a>
+                    <a href="{% url 'registroEmpleado' %}" style="text-decoration:none">
+                        <button type="button" class="btn btn-warning" id="emp" value="Empleado">Empleado</button>
+                    </a>
+                </div>
+
+{% endblock %}

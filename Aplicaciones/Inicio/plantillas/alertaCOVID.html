@@ -1,0 +1,47 @@
+{% extends "registroPlantilla.html" %} {% load static %}
+{% block title %} Registro de empleado {% endblock %} 
+{% block content %}
+{% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        Datos incorrectos, vuelve a intentarlo.
+    </div>
+{% endif %}
+
+
+        <div class="container px-4 py-5">
+            <p>Si conoces o has sido testigo de una persona presentando síntomas de COVID-19, llena los siguientes campos.
+                RECUERDA: este reporte sera comunicado al administrador con tus datos, responde de manera sincera.
+            </p>
+            <br>
+            <form class="form" method="POST">
+                {% csrf_token %}
+
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-md-right">Nombre</label>
+                    <div class="col-md-6">
+                        <input type="text" id="nombre" class="form-control" name="nombre" required>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-md-right">Descripción</label>
+                    <div class="col-md-6">
+                        <textarea id="respuesta" class="form-control" name="respuesta" required></textarea>
+                    </div>
+                </div>
+
+                <br>
+                
+                <br>
+
+                <div class="col-md-6 offset-md-4">
+                    <button type="submit" class="btn btn-warning">
+                        Registrar
+                    </button>
+                    <br>
+                </div>
+            </form>
+        </div>
+{% endblock %}

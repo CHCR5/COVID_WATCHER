@@ -1,0 +1,58 @@
+{% extends "menuAdminPlantilla.html" %} {% load static %}
+{% block content %}
+
+
+
+<div class="container px-4 py-5">
+    {% if adminreport %}
+
+    <h2 class="pb-2 border-bottom" style="text-align: center;">Reportes</h2>
+    <br>
+
+    <form class="form" method="POST">
+        {% csrf_token %}
+        <div class="form-group row">
+            <label class="col-md-4 col-form-label text-md-right">Fecha:</label>
+            <div class="col-md-6">
+                <input type="month" id="fechafiltro" class="form-control" name="fechafiltro">
+            </div>
+        </div>
+        <br>
+        <div class="col-md-6 offset-md-4">
+            <button type="submit" class="btn btn-warning">
+                Buscar
+            </button>
+            <br>
+        </div>
+        <br>
+        <div class="col-md-8">
+            <a href="{% url 'alertaCOVIDReporteMesPDF' %}" style="text-decoration:none">
+                <button type="button" class="btn btn-warning">Generar PDF</button>
+            </a>
+        </div>
+        <br>
+    </form>
+
+
+    <br>
+
+    {% for ReporteDeContagio in adminreport %}
+
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="feature col offset-md-1" id="col1">
+            <h2>{{ ReporteDeContagio.nombre }}</h2>
+            <p>Correo: {{ ReporteDeContagio.idempleado.correo }}</p>
+            <p>Area: {{ ReporteDeContagio.idarea.nombre }}</p>
+            <p>Fecha de reporte: {{ ReporteDeContagio.fechahora }}</p>
+            <p>Comentario adicional:</p>
+            <p>{{ ReporteDeContagio.respuesta }}</p>
+        </div>
+    </div>
+
+    {% endfor %}
+    {% else %}
+    <div class="alert alert-danger">No hay ningún reporte.</div>
+    {% endif %}
+</div>
+
+{% endblock %}

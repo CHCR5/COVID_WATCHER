@@ -1,0 +1,217 @@
+{% extends "registroPlantilla.html" %} {% load static %}
+{% block title %} Registro de empleado {% endblock %} 
+{% block content %}
+{% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        Datos incorrectos, vuelve a intentarlo.
+    </div>
+{% endif %}
+
+        <div class="container px-4 py-5">
+            <p>Para poder realizar un correcto análisis y procesamiento de los datos, te solicitamos que respondas el siguiente cuestionario relacionado con aspectos de la salud persistentes o crónicos.</p>
+            <br>
+            <form class="form" method="POST" id="miForm">
+                {% csrf_token %}
+                
+                <label class="col-md-4 col-form-label text-md-right">Diabetes</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="diabetes" name="diabetes" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="diabetes" name="diabetes" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">EPOC (enfermedad pulmonar inflamatoria crónica que causa la obstrucción del flujo de aire de los pulmones)</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="epoc" name="epoc" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="epoc" name="epoc" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Asma</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="asma" name="asma" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="asma" name="asma" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Inmunosupresivo (Disminución o anulación de la respuesta inmunológica del organismo mediante tratamiento médico)</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="inmusupr" name="inmusupr" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="inmusupr" name="inmusupr" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Hipertensión</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="hiperten" name="hiperten" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="hiperten" name="hiperten" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">VIH/SIDA</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="vihsida" name="vihsida" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="vihsida" name="vihsida" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Otra condición de salud o comorbilidad (dos o mas trastornos o enfermedades padecidas)</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="otracon" name="otracon" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="otracon" name="otracon" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Enfermedad cardíaca</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="enfcardi" name="enfcardi" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="enfcardi" name="enfcardi" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Obesidad</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="obesidad" name="obesidad" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="obesidad" name="obesidad" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Insuficiencia renal crónica</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="insrencr" name="insrencr" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="insrencr" name="insrencr" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Tabaquismo</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="tabaquis" name="tabaquis" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="tabaquis" name="tabaquis" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <label class="col-md-4 col-form-label text-md-right">Vacunado contra influenza</label>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="vacunado" name="vacunado" value="Si" required>
+                        <label class="form-check-label">Si</label>
+                    </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <div class="col-md-6">
+                        <input class="form-check-input" type="radio" id="vacunado" name="vacunado" value="No" required>
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <div class="col-md-6 offset-md-4">
+                    <button type="submit" class="btn btn-warning">
+                        Registrar
+                    </button>
+                    <br>
+                </div>
+            </form>
+        </div>
+{% endblock %}

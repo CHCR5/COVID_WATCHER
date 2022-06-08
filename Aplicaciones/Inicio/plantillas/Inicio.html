@@ -1,0 +1,61 @@
+{% extends "inicioMain.html" %} {% load static %}
+{% block title %} El COVID-19 ha llegado para quedarse, ¡aprendamos a vivir con ello juntos! {% endblock %} 
+{% block content %}
+
+
+
+<div class="container px-4 py-5" id="featured-3">
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="feature col offset-md-1" id="col1">
+            <div class="feature-icon bg-warning bg-gradient">
+                <img class="bi" width="40em" height="40em" src='{% static "img/security.svg" %}' />
+            </div>
+            <h2>Seguridad</h2>
+            <p>La unica forma de acceder a la pagina de tu empresa sera mediante una serie de validaciones que imposibilitaran a otros a acceder a datos de tu empresa.</p>
+        </div>
+        <div class="feature col offset-md-1" id="col1">
+            <div class="feature-icon bg-warning bg-gradient">
+                <img class="bi" width="40em" height="40em" src='{% static "img/watcher.svg" %}' />
+            </div>
+            <h2>Monitoreo</h2>
+            <p>Podrás monitorear la presencia del COVID-19 en tu empresa mediante el uso de tecnologías de minería de datos y, asi, anticiparte y prevenirte de una situación de emergencia.</p>
+        </div>
+        <div class="feature col offset-md-1" id="col1">
+            <div class="feature-icon bg-warning bg-gradient">
+                <img class="bi" width="40em" height="40em" src='{% static "img/virus.svg" %}' />
+            </div>
+            <h2>Prevención</h2>
+            <p>Es importante prevenir una situación que pueda causar el cierre temporal de la empresa, por lo que te ayudamos a detectar un posible peligro de contagio en tus instalaciones.</p>
+        </div>
+    </div>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="feature col offset-md-1" id="col1">
+            <div class="feature-icon bg-warning bg-gradient">
+                <img class="bi" width="40em" height="40em" src='{% static "img/stadistic.svg" %}' />
+            </div>
+            <h2>Estadísticas</h2>
+            <p>Después de realizar el procesado de los datos, puedes consultar la información en distintos formatos de forma ordenada y resumida.</p>
+        </div>
+        <div class="feature col offset-md-1" id="col1">
+            <div class="feature-icon bg-warning bg-gradient">
+                <img class="bi" width="40em" height="40em" src='{% static "img/user.svg" %}' />
+            </div>
+            <h2>Usuarios</h2>
+            <p>El usuario "administrador" tendrá acceso al monitoreo de los datos y el usuario "empleado" tendrá la posibilidad de acceder diariamente a contestar una serie de cuestionarios.</p>
+        </div>
+        <div class="feature col offset-md-1" id="col1">
+            <div class="feature-icon bg-warning bg-gradient">
+                <img class="bi" width="40em" height="40em" src='{% static "img/alert.svg" %}' />
+            </div>
+            <h2>Alertas</h2>
+            <p>El sistema cuenta con alertas que avisaran al administrador de posibles casos de COVID-19 y de situaciones que puedan comprometer el monitoreo de la presencia del virus en la empresa.</p>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+
+        

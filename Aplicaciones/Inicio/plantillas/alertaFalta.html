@@ -1,0 +1,77 @@
+{% extends "registroPlantilla.html" %} {% load static %}
+{% block title %} Registro de empleado {% endblock %} 
+{% block content %}
+{% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        Datos incorrectos, vuelve a intentarlo.
+    </div>
+{% endif %}
+
+
+        <div class="container px-4 py-5">
+            <p>Llena los siguientes campos para notificar al administrador acerca de una ausencia laboral.
+            </p>
+            <br>
+            <form class="form" method="POST">
+                {% csrf_token %}
+
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-md-right">Nombre</label>
+                    <div class="col-md-6">
+                        <input type="text" id="nombre" class="form-control" name="nombre" required>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-md-right">Tipo de falta</label>
+                    <div class="col-md-6">
+                        <select class="form-control" id="tipo" name="tipo" required>
+                            <option value="Vacaciones">Vacaciones</option>
+                            <option value="Enfermedad">Enfermedad</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-md-right">Fecha de inicio de falta</label>
+                    <div class="col-md-6">
+                        <input type="date" id="fechainiciofalta" class="form-control" name="fechainiciofalta" required>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-md-right">Fecha de fin de falta</label>
+                    <div class="col-md-6">
+                        <input type="date" id="fechafinfalta" class="form-control" name="fechafinfalta" required>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="form-group row">
+                    <label class="col-md-4 col-form-label text-md-right">Comentario adicional</label>
+                    <div class="col-md-6">
+                        <textarea id="comentario" class="form-control" name="comentario" required></textarea>
+                    </div>
+                </div>
+
+                <br>
+                
+                <br>
+
+                <div class="col-md-6 offset-md-4">
+                    <button type="submit" class="btn btn-warning">
+                        Registrar
+                    </button>
+                    <br>
+                </div>
+            </form>
+        </div>
+{% endblock %}

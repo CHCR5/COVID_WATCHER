@@ -1,0 +1,31 @@
+.box #eleccion{
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 200px;
+    
+}
+
+#adm{
+    text-align: center;
+    padding: 20px;
+    width: 150px;
+    display: flex;
+}
+
+#emp{
+    text-align: center;
+    padding: 20px;
+    width: 150px;
+    display: flex;
+}
+
+
+#reg1{
+    margin-top: 150px;
+}
+
+#barraNav #derecha {
+    display: flex;
+}
+
