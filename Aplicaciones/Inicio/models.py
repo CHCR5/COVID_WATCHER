@@ -25,7 +25,7 @@ class Administrador(models.Model):
 class Empresa(models.Model):
     idempresa = models.AutoField(db_column='idEmpresa', primary_key=True)  # Field name made lowercase.
     nombregenerado = models.CharField(db_column='nombreGenerado', max_length=50, blank=True, null=True, unique=True)  # Field name made lowercase.
-    idadmin = models.ForeignKey(Administrador, on_delete=models.CASCADE, db_column='idAdmin', blank=True, null=True)  # Field name made lowercase.
+    idadmin = models.ForeignKey(Administrador, on_delete=models.CASCADE, db_column='idAdmin', blank=True, null=True, unique=False)  # Field name made lowercase.
     clave = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
@@ -37,7 +37,7 @@ class Area(models.Model):
     idarea = models.AutoField(db_column='idArea', primary_key=True)  # Field name made lowercase.
     descripcion = models.CharField(max_length=200, blank=True, null=True)
     tipo = models.CharField(db_column='tipo', max_length=50)  # Field name made lowercase.
-    nombre = models.CharField(db_column='nombre', unique=True, max_length=50)  # Field name made lowercase.
+    nombre = models.CharField(db_column='nombre', max_length=50)  # Field name made lowercase.
     idempresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, db_column='idEmpresa')  # Field name made lowercase.
 
     class Meta:

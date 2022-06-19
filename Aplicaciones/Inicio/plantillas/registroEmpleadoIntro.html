@@ -1,0 +1,16 @@
+{% extends "registroPlantilla.html" %} {% load static %}
+{% block title %} Registro de empleado {% endblock %} 
+{% block content %}
+
+
+    <center><video src='{% static "img/VIDEO_EMPLEADOS.mp4" %}' id="myVideo" width="640" height="480" autoplay="True" poster='{% static "img/min.png" %}' controls></video></center>
+    <br>
+    <br>
+    <center>
+        <a href="{% url 'registroEmpleadoIntro2' %}" style="text-decoration:none">
+            <button type="button" class="btn btn-warning" id="myButton" disabled="disabled">Continuar</button>
+        </a>
+    </center>
+
+
+{% endblock %}

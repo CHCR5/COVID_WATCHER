@@ -1,0 +1,41 @@
+{% extends "registroPlantilla.html" %} {% load static %}
+{% block title %} Registro de empleado {% endblock %} 
+{% block content %}
+
+        <div class="container px-4 py-5">
+            <center><h4>Prometo:</h4></center>
+            <br>
+            <form class="form" method="POST">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label for="comp1" class="col-md-30 col-form-label text-md-right">Utilizar con responsabilidad los resultados generados por la aplicación para mejorar y reforzar las medidas de prevención, sabiendo que los resultados son probables, no asegurados</label>
+                    <div class="form-check form-check-inline">
+                        <div class="col-md-6">
+                            <input class="form-check-input" id="si1" type="radio" name="si1" value="si1" required>
+                            <label class="form-check-label" for="si1">Si</label>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="form-group row">
+                    <label for="comp2" class="col-md-30 col-form-label text-md-right">No tomar represalias contra ningún empleado o area en relación a los resultados obtenidos por la aplicación, no es culpa de nadie, todos estamos juntos en esto</label>
+                    <div class="form-check form-check-inline">
+                        <div class="col-md-6">
+                            <input class="form-check-input" id="si2" type="radio" name="si2" value="si2" required>
+                            <label class="form-check-label" for="si2">Si</label>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+                <center>
+                    <button type="submit" class="btn btn-warning">
+                        Continuar
+                    </button>
+                    <br>
+                </center>
+            </form>
+        </div>
+{% endblock %}

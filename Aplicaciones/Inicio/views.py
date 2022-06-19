@@ -79,6 +79,28 @@ def registroMain(request):
     else:
         return redirect('/')
 
+def registroEmpleadoIntro(request):
+    if "idempleado" in request.session:
+        return redirect('menuEmpleado')
+    elif "idadmin" in request.session:
+        return redirect('menuAdmin')
+    elif "registro" in request.session:
+        return render(request, 'registroEmpleadoIntro.html')
+    else:
+        return redirect('/')
+
+def registroEmpleadoIntro2(request):
+    if "idempleado" in request.session:
+        return redirect('menuEmpleado')
+    elif "idadmin" in request.session:
+        return redirect('menuAdmin')
+    elif "registro" in request.session:
+        if request.method == 'POST':
+            return redirect('registroEmpleado')
+        return render(request, 'registroEmpleadoIntro2.html')
+    else:
+        return redirect('/')
+
 @transaction.atomic
 def registroEmpleado(request):
     if "idempleado" in request.session:
@@ -262,6 +284,28 @@ def cierreSesion(request):
         return render(request, 'Inicio.html', {})
     else:   
         return render(request, 'Inicio.html', {})
+
+def registroAdministradorIntro(request):
+    if "idempleado" in request.session:
+        return redirect('menuEmpleado')
+    elif "idadmin" in request.session:
+        return redirect('menuAdmin')
+    elif "registro" in request.session:
+        return render(request, 'registroAdministradorIntro.html')
+    else:
+        return redirect('/')
+
+def registroAdministradorIntro2(request):
+    if "idempleado" in request.session:
+        return redirect('menuEmpleado')
+    elif "idadmin" in request.session:
+        return redirect('menuAdmin')
+    elif "registro" in request.session:
+        if request.method == 'POST':
+            return redirect('registroAdministrador')
+        return render(request, 'registroAdministradorIntro2.html')
+    else:
+        return redirect('/')
 
 @transaction.atomic
 def registroAdministrador(request):
