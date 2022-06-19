@@ -1540,22 +1540,27 @@ def historialResDia(request):
             except DatosAlgoritmo.DoesNotExist:
                 print("ERROR") 
             b=0
+            print(arealistfn)
             for r in arealistfn:
-                resalg=DatosAlgoritmo.objects.select_related('idarea').filter(fecha = datetime.datetime.strptime(fechaget, '%Y-%m-%d'), idarea__idempresa = empresa, idarea=r).order_by('idreg')
-                print(resalg)
-                for area in resalg:
-                    datosareas[b].append(area.idarea.nombre)
-                    datosareas[b].append(area.casospos)
-                    datosareas[b].append(area.casosneg)
-                    totalcont = area.casospos+area.casosneg
-                    if(totalcont == 0):
-                        datosareas[b].append(0)
-                        continue
-                    porpos = (area.casospos/totalcont)*100
-                    porpos=round(porpos, 2)
-                    datosareas[b].append(porpos)
-                posarea.append(resalg[0].casospos)
-                b+=1
+                
+                if DatosAlgoritmo.objects.select_related('idarea').filter(fecha = datetime.datetime.strptime(fechaget, '%Y-%m-%d'), idarea__idempresa = empresa, idarea=r).order_by('idreg').exists():
+                    resalg=DatosAlgoritmo.objects.select_related('idarea').filter(fecha = datetime.datetime.strptime(fechaget, '%Y-%m-%d'), idarea__idempresa = empresa, idarea=r).order_by('idreg')
+                    print(resalg)
+                    for area in resalg:
+                        datosareas[b].append(area.idarea.nombre)
+                        datosareas[b].append(area.casospos)
+                        datosareas[b].append(area.casosneg)
+                        totalcont = area.casospos+area.casosneg
+                        if(totalcont == 0):
+                            datosareas[b].append(0)
+                            continue
+                        porpos = (area.casospos/totalcont)*100
+                        porpos=round(porpos, 2)
+                        datosareas[b].append(porpos)
+                    posarea.append(resalg[0].casospos)
+                    b+=1
+                else:
+                    continue
             
             request.session['fecha'] = fechaget
             print(posarea)
