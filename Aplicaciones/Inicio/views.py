@@ -1646,6 +1646,11 @@ def historialResDiaPDF(request):
         idadminaux = request.session["idadmin"]
         if 'fecha' in request.session:
             fecha = request.session["fecha"]
+            print(fecha)
+            if fecha == '':
+                messages.error(request, f'Por favor elija una fecha')
+                del request.session['fecha']
+                return redirect('historialResDia')
             empresa = Empresa.objects.get(idadmin = idadminaux)
             arean = Area.objects.filter(idempresa=empresa).count()
             arealist = Area.objects.filter(idempresa=empresa)
@@ -1764,12 +1769,15 @@ def historialResDiaPDF(request):
 
 
             for ar in arealist:
-                arealistfn.append(ar.idarea)
-                arealistnomb.append(ar.nombre)
-                resalg = DatosAlgoritmo.objects.filter(idarea=ar.idarea, fecha=fecha, idarea__idempresa = empresa).order_by('idreg')
-                for n in resalg:
-                    totalemppos+=n.casospos
-                    totalempneg+=n.casosneg
+                if DatosAlgoritmo.objects.select_related('idarea').filter(fecha = datetime.datetime.strptime(fecha, '%Y-%m-%d'), idarea__idempresa = empresa, idarea=ar).order_by('idreg').exists():
+                    arealistfn.append(ar.idarea)
+                    arealistnomb.append(ar.nombre)
+                    resalg = DatosAlgoritmo.objects.filter(idarea=ar.idarea, fecha=fecha, idarea__idempresa = empresa).order_by('idreg')
+                    for n in resalg:
+                        totalemppos+=n.casospos
+                        totalempneg+=n.casosneg
+                else:
+                    continue
             try:
                 for i in range(7):
                     ayer=DatosAlgoritmo.objects.select_related('idarea').filter(fecha = datetime.datetime.strptime(fecha, '%Y-%m-%d') - datetime.timedelta(days = i), idarea__idempresa = empresa)
@@ -1799,23 +1807,28 @@ def historialResDiaPDF(request):
                 print("ERROR") 
             b=0
             for r in arealistfn:
-                resalg=DatosAlgoritmo.objects.select_related('idarea').filter(fecha = datetime.datetime.strptime(fecha, '%Y-%m-%d'), idarea__idempresa = empresa, idarea=r).order_by('idreg')
-                #print(resalg)
-                for area in resalg:
-                    datosareas[b].append(area.idarea.nombre)
-                    datosareas[b].append(area.casospos)
-                    datosareas[b].append(area.casosneg)
-                    totalcont = area.casospos+area.casosneg
-                    if(totalcont == 0):
-                        datosareas[b].append(0)
-                        continue
-                    porpos = (area.casospos/totalcont)*100
-                    porpos=round(porpos, 2)
-                    datosareas[b].append(porpos)
-                posarea.append(resalg[0].casospos)
-                b+=1
+                if DatosAlgoritmo.objects.select_related('idarea').filter(fecha = datetime.datetime.strptime(fecha, '%Y-%m-%d'), idarea__idempresa = empresa, idarea=r).order_by('idreg').exists():
+                    print(r)
+                    resalg=DatosAlgoritmo.objects.select_related('idarea').filter(fecha = datetime.datetime.strptime(fecha, '%Y-%m-%d'), idarea__idempresa = empresa, idarea=r).order_by('idreg')
+                    #print(resalg)
+                    for area in resalg:
+                        datosareas[b].append(area.idarea.nombre)
+                        datosareas[b].append(area.casospos)
+                        datosareas[b].append(area.casosneg)
+                        totalcont = area.casospos+area.casosneg
+                        if(totalcont == 0):
+                            datosareas[b].append(0)
+                            continue
+                        porpos = (area.casospos/totalcont)*100
+                        porpos=round(porpos, 2)
+                        datosareas[b].append(porpos)
+                    posarea.append(resalg[0].casospos)
+                    b+=1
+                else:
+                    continue
             print(datosareas)
-            
+            datosareas= list(filter(None, datosareas))
+            print(datosareas)
 
             fig, ax = plt.subplots()
             ax.set_ylabel('Casos positivos')
